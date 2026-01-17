@@ -1,6 +1,6 @@
 ## 0. 项目介绍
 
-HeartMenu 是一个「情侣点餐」小应用，包含：
+HeartMenu 是一个「情侣点餐」小应用，全生态接入 Cloudflare 免费服务。包含内容：
 
 - 点餐端（用户）：登录后查看菜单、添加菜品到购物车、提交订单
 - 管理端（后台）：管理菜品、用户、查看订单，并支持配置 Cloudflare R2 存储图片
@@ -12,16 +12,17 @@ HeartMenu 是一个「情侣点餐」小应用，包含：
 - `couple-menu-api`：后端 API（Cloudflare Workers + Hono）
 
 后续开发计划：
+
 - [ ] 接入小程序端，通过自建 API 登录
 - [ ] 邮箱提醒等多种提醒方式
 
 截图演示：
 
-|后台管理端|前台点餐端|
-|---|---|
-|<img width="1568" height="920" alt="image" src="https://github.com/user-attachments/assets/7f527c86-9d5b-44fa-8d0c-2901a87852fc" />|<img width="374" height="825" alt="image" src="https://github.com/user-attachments/assets/06aad3c6-4ac9-4212-9fc7-c17f7ef28681" />|
-|<img width="1580" height="930" alt="image" src="https://github.com/user-attachments/assets/692aff50-11f9-4356-a055-bdba2b280d94" />|<img width="375" height="825" alt="image" src="https://github.com/user-attachments/assets/f2dd5a0b-df8e-44f8-bd35-890f92a40ccc" />|
-|<img width="1569" height="930" alt="image" src="https://github.com/user-attachments/assets/76c817e8-1575-4c50-b055-74a3d2551c7c" />|<img width="379" height="825" alt="image" src="https://github.com/user-attachments/assets/a3582354-4e03-459f-b033-d787261c21f2" />|
+| 后台管理端                                                                                                                          | 前台点餐端                                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| <img width="1568" height="920" alt="image" src="https://github.com/user-attachments/assets/7f527c86-9d5b-44fa-8d0c-2901a87852fc" /> | <img width="374" height="825" alt="image" src="https://github.com/user-attachments/assets/06aad3c6-4ac9-4212-9fc7-c17f7ef28681" /> |
+| <img width="1580" height="930" alt="image" src="https://github.com/user-attachments/assets/692aff50-11f9-4356-a055-bdba2b280d94" /> | <img width="375" height="825" alt="image" src="https://github.com/user-attachments/assets/f2dd5a0b-df8e-44f8-bd35-890f92a40ccc" /> |
+| <img width="1569" height="930" alt="image" src="https://github.com/user-attachments/assets/76c817e8-1575-4c50-b055-74a3d2551c7c" /> | <img width="379" height="825" alt="image" src="https://github.com/user-attachments/assets/a3582354-4e03-459f-b033-d787261c21f2" /> |
 
 ---
 
