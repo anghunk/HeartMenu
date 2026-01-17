@@ -2,10 +2,15 @@ name = "couple-menu-api"
 main = "src/index.ts"
 compatibility_date = "2024-06-01"
 
+send_email = [
+  { name = "SEB" }
+]
+
 [vars]
 JWT_SECRET = "REPLACE_WITH_JWT_SECRET"
 ADMIN_USERNAME = "REPLACE_WITH_ADMIN_USERNAME"
 ADMIN_PASSWORD = "REPLACE_WITH_ADMIN_PASSWORD"
+NOTIFY_FROM_ADDRESS = "REPLACE_WITH_NOTIFY_FROM_ADDRESS"
 
 [[d1_databases]]
 binding = "DB"
@@ -15,4 +20,3 @@ database_id = "REPLACE_WITH_DATABASE_ID"
 [[kv_namespaces]]
 binding = "KV"
 id = "REPLACE_WITH_KV_NAMESPACE_ID"
-

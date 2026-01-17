@@ -126,6 +126,39 @@
       </form>
     </div>
 
+    <div class="bg-surface border border-secondary rounded-md p-6 mb-6">
+      <div class="flex items-center mb-4">
+        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.4 15A7.968 7.968 0 0120 12a8 8 0 10-8 8c.34 0 .674-.02 1.004-.05"></path>
+        </svg>
+        <h3 class="text-lg font-semibold text-text">订单通知邮箱</h3>
+      </div>
+      <p class="text-sm text-muted mb-4">配置用于接收点餐端提交订单提醒的邮箱地址。</p>
+      <div class="space-y-4">
+        <div>
+          <label for="notifyEmail" class="block text-sm font-medium text-text mb-1">
+            通知邮箱
+          </label>
+          <input
+            id="notifyEmail"
+            type="email"
+            v-model="notifyEmail"
+            placeholder="例如：your-name@example.com"
+            class="block w-full px-3 py-2 bg-white border border-secondary/30 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all sm:text-sm"
+          />
+          <p class="text-xs text-muted mt-1">
+            该邮箱需要在 Cloudflare Email Routing 中完成验证。
+          </p>
+        </div>
+        <div class="flex justify-end">
+          <Button type="primary" @click="handleSaveNotifyEmail" :loading="savingNotifyEmail">
+            保存通知邮箱
+          </Button>
+        </div>
+      </div>
+    </div>
+
     <!-- Usage Tips -->
     <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
       <div class="flex">
@@ -166,6 +199,8 @@ const r2Config = reactive({
 const saving = ref(false)
 const testing = ref(false)
 const loading = ref(true)
+const notifyEmail = ref('')
+const savingNotifyEmail = ref(false)
 const configStatus = reactive({
   connected: false,
   message: '未配置',
@@ -207,6 +242,15 @@ const fetchR2Config = async () => {
     console.log('R2 config not found')
   } finally {
     loading.value = false
+  }
+}
+
+const fetchNotifyEmail = async () => {
+  try {
+    const res = await api.get('/admin/settings/notify-email')
+    notifyEmail.value = res.data.email || ''
+  } catch (error) {
+    console.log('notify email not configured')
   }
 }
 
@@ -284,6 +328,23 @@ const handleTestConnection = async () => {
   }
 }
 
+const handleSaveNotifyEmail = async () => {
+  savingNotifyEmail.value = true
+  try {
+    await api.post('/admin/settings/notify-email', {
+      email: notifyEmail.value,
+    })
+    showNotification('通知邮箱已保存')
+  } catch (error: any) {
+    showNotification(error.response?.data?.error || '保存失败', 'error')
+  } finally {
+    savingNotifyEmail.value = false
+  }
+}
+
 // Lifecycle
-onMounted(fetchR2Config)
+onMounted(async () => {
+  await fetchR2Config()
+  await fetchNotifyEmail()
+})
 </script>
